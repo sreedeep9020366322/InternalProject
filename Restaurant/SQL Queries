@@ -1,0 +1,69 @@
+
+CREATE TABLE  "EMPLOYEE" 
+   (	"EMPLOYEENAME" VARCHAR2(50) NOT NULL ENABLE, 
+	"EMPLOYEEID" VARCHAR2(20) NOT NULL ENABLE, 
+	"DESIGNATION" VARCHAR2(40) NOT NULL ENABLE, 
+	"EMPLOYEEADDRESS" VARCHAR2(60), 
+	"EMPLOYEEMOBILE" NUMBER, 
+	"DATEOFJOINING" DATE NOT NULL ENABLE, 
+	 CONSTRAINT "EMPLOYEE_PK" PRIMARY KEY ("EMPLOYEEID") ENABLE
+   )
+
+=======================================================================================================================
+
+CREATE TABLE  "EMPLOYEECREDENTIALS" 
+   (	"EMPLOYEEID" VARCHAR2(20) NOT NULL ENABLE, 
+	"EMPLOYEEPSWD" VARCHAR2(20) NOT NULL ENABLE, 
+	 CONSTRAINT "EMPLOYEECREDENTIALS_PK" PRIMARY KEY ("EMPLOYEEID", "EMPLOYEEPSWD") ENABLE
+   )
+
+========================================================================================================================
+
+CREATE TABLE  "ORDERDETAILS" 
+   (	"ORDERID" VARCHAR2(20) NOT NULL ENABLE, 
+	"TABLEID" VARCHAR2(20) NOT NULL ENABLE, 
+	"NOOFITEMS" NUMBER NOT NULL ENABLE, 
+	 CONSTRAINT "ORDERDETAILS_PK" PRIMARY KEY ("ORDERID") ENABLE
+   )
+
+
+========================================================================================================================
+
+CREATE TABLE  "ORDER_ITEM" 
+   (	"ORDERID" VARCHAR2(20) NOT NULL ENABLE, 
+	"ITEMID" VARCHAR2(20) NOT NULL ENABLE, 
+	"QUANTITY" NUMBER NOT NULL ENABLE, 
+	"ORDERCOMMENT" VARCHAR2(50), 
+	"ORDERSTATUS" VARCHAR2(20) NOT NULL ENABLE, 
+	 CONSTRAINT "ORDER_ITEM_PK" PRIMARY KEY ("ORDERID", "ITEMID") ENABLE, 
+	 CONSTRAINT "ORDER_ITEM_FK" FOREIGN KEY ("ORDERID")
+	  REFERENCES  "ORDERDETAILS" ("ORDERID") ENABLE, 
+	 CONSTRAINT "ORDER_ITEM_FK2" FOREIGN KEY ("ITEMID")
+	  REFERENCES  "ITEM" ("ITEMID") ENABLE
+   )
+
+
+===================================================================================================================
+
+CREATE TABLE  "TABLEINFO" 
+   (	"TABLEID" VARCHAR2(20) NOT NULL ENABLE, 
+	"EMPLOYEEID" VARCHAR2(20) NOT NULL ENABLE, 
+	 CONSTRAINT "TABLEINFO_PK" PRIMARY KEY ("TABLEID") ENABLE
+   )
+
+
+=====================================================================================================================
+
+CREATE TABLE  "ITEM" 
+   (	"ITEMNAME" VARCHAR2(40) NOT NULL ENABLE, 
+	"ITEMID" VARCHAR2(20) NOT NULL ENABLE, 
+	"CATEGORY" VARCHAR2(20), 
+	"RATE" NUMBER(2,20) NOT NULL ENABLE, 
+	"ITEMSTATUS" VARCHAR2(10), 
+	 CONSTRAINT "ITEM_PK" PRIMARY KEY ("ITEMID") ENABLE
+   )
+
+======================================================================================================================
+
+
+
